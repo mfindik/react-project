@@ -1,8 +1,10 @@
 import React from 'react'
-
-import AnaMenu from './AnaMenu'
 import KoyListesi from '../sayfalar/KoyListesi'
+import AnaMenu from './AnaMenu'
+import { Route } from 'react-router';
 import { Grid, GridColumn } from 'semantic-ui-react'
+import KoyDetayi from '../sayfalar/KoyDetayi';
+import GezdigimKoyler from '../sayfalar/GezdigimKoyler';
 export default function AnaBilesen() {
   return (
     <div>
@@ -12,7 +14,11 @@ export default function AnaBilesen() {
             <AnaMenu />
           </GridColumn>
           <GridColumn width={12}>
-            <KoyListesi />
+            <Route exact path="/" component={KoyListesi}/>
+            <Route exact path="/koyler" component={KoyListesi}/>
+            <Route path="/koyler/:yerNo" component={KoyDetayi}/>
+            <Route path="/gezilenkoyler" component={GezdigimKoyler}/>
+            
           </GridColumn>
         </Grid.Row>
       </Grid>

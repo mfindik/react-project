@@ -1,29 +1,34 @@
-import React from 'react'
-import { Button, Menu, Container } from 'semantic-ui-react'
+import React, {useState} from 'react'
+import { Menu, Container} from 'semantic-ui-react'
+import GirisYap from './GirisYap'
+import CikisYap from './CikisYap'
 import SepetOzeti from './SepetOzeti'
+import { useHistory } from 'react-router-dom'
 
 export default function Navigasyon() {
+    //-----Durum------------Durumu değistirecek metot---durumun ilk değeri
+    const [kimlikDogrulama, setKimlikDogrulama] = useState(true)
+    const gecmis = useHistory()
+    function cikisYapalim(){
+        setKimlikDogrulama(false)
+        gecmis.push("/")
+    }
+    function girisYapalim(){
+        setKimlikDogrulama(true)
+    }
     return (
         <div>
             <Menu inverted fixed="top">
             <Container>
-                <Menu.Item
-                    name='home'
-                   
-                />
-                <Menu.Item
-                    name='messages'
-                    
-                />
+                <Menu.Item name='Ana Sayfa' />
+                <Menu.Item name='Mesajlar' />
 
                 <Menu.Menu position='right'>
                     <SepetOzeti/>
-
-                    <Menu.Item>
-                        <Button primary>Sign Up</Button>
-                    </Menu.Item>
+                    {kimlikDogrulama?<GirisYap cikisYapNavidenGeliyor={cikisYapalim}/>
+                                    :<CikisYap girisYapNavidenGeliyor={girisYapalim}/>}
                 </Menu.Menu>
-                </Container>
+            </Container>
             </Menu>
         </div>
     )

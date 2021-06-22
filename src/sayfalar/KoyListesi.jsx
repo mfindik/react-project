@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon, Menu, Table } from "semantic-ui-react";
+import { Link } from "react-router-dom"
 import KoyServisi from "../servisler/koyServisi";
 
 export default function KoyListesi() {
@@ -12,7 +13,6 @@ export default function KoyListesi() {
         koyServisi.getKoyler().then(sonuc => setKoyler(sonuc.data))
 
     }, [])
-    //console.log(koyler)
     return (
         <div>
             <Table celled>
@@ -29,7 +29,7 @@ export default function KoyListesi() {
                         koyler.map(koy => (
                             <Table.Row key={koy.yerNo}>
                                 <Table.Cell>{koy.yerNo}</Table.Cell>
-                                <Table.Cell>{koy.yerAdi}</Table.Cell>
+                                <Table.Cell><Link to={`/koyler/${koy.yerNo}`}>{koy.yerAdi}</Link></Table.Cell>
                             </Table.Row>
                         ))
                     }

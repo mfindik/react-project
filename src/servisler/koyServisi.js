@@ -5,4 +5,8 @@ export default class KoyServisi{
         return axios.get(`http://localhost:49793/api/angular/koyler`)
     }
 
+    getKoyDetay(yerNo){
+        return axios.get("http://localhost:49793/api/angular/koydetay?yerNo=" + yerNo)
+    }
+
 }
